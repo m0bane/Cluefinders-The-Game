@@ -10,7 +10,7 @@ You can play the web demo directly using GitHub Pages here:
 
 > **DEMO LINK:**
 >
-> 🔗 **[https://m0bane.github.io/Cluefinders-The-Game/hub.html]**
+> 🔗 **[https://patoszop.github.io/Cluefinders-The-Game/hub.html]**
 >
 
 
@@ -51,7 +51,7 @@ If you wish to download the game and run it locally, follow these steps:
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://m0bane.github.io/Cluefinders-The-Game.git](https://m0bane.github.io/Cluefinders-The-Game.git)
+    git clone [https://patoszop.github.io/Cluefinders-The-Game.git](https://patoszop.github.io/Cluefinders-The-Game.git)
     cd YOUR_REPO_NAME
     ```
 
