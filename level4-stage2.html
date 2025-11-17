@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Cluefinders – Level 4 (Stage 2)</title>
+  <style>
+    /* Unique twist for Level 4 Stage 2: Invisible button */
+    #invisibleBtn {
+        position: absolute;
+        top: 800px;
+        left: 33%;
+        width: 100px;
+        height: 100px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Level 4 – Stage 2</h1>
+  <p>Find the invisible area on the screen. The clue you are looking for is hidden somewhere in this page.</p>
+  
+  <a href="level4.html">Go back to Stage 1</a>
+
+  <button id="invisibleBtn"></button>
+
+  <div id="hiddenHint2" style="display: none; margin-top: 30px;">
+    <p><strong>Clue 2:</strong> The date is 2023-01-01.</p>
+  </div>
+
+  <a href="level4-stage3.html" id="stage3Link" style="display: none;">Proceed to Stage 3</a>
+
+  <script>
+    document.getElementById("invisibleBtn").addEventListener("click", () => {
+      document.getElementById("hiddenHint2").style.display = "block";
+      document.getElementById("stage3Link").style.display = "inline-block";
+    });
+
+    // Dev helper — type `devOutlines()` in the console
+    function devOutlines() {
+      const all = document.querySelectorAll("*");
+      all.forEach(el => {
+        const style = window.getComputedStyle(el);
+        const isVisible = style.display !== "none" && style.visibility !== "hidden" && style.opacity !== "0";
+
+        if (!isVisible || el.offsetWidth === 0 || el.offsetHeight === 0) {
+          el.style.outline = "2px dashed red";
+        } else {
+          el.style.outline = "1px dashed limegreen";
+        }
+      });
+
+      console.log("🔍 Dev outlines added (red = hidden, green = visible)");
+    }
+    
+    // Expose function to console
+    window.devOutlines = devOutlines;
+  </script>
+</body>
+</html>

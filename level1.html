@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Cluefinders – Level 1</title>
+</head>
+<body>
+
+  <h1>Level 1</h1>
+  <p>Welcome to Level 1. Your task is to explore and find clues.</p>
+
+  <button id="hiddenBtn1" style="position: absolute; top: 550px; left: 800px;"></button>
+
+  <a href="level1-stage2.html">Go to Stage 2</a>
+
+  <div id="hiddenHint1" style="display: none;">
+    <strong>Clue:</strong><p>XJP</p><br>
+  </div>
+
+  <script>
+    // Event listener for the invisible button
+    document.getElementById("hiddenBtn1").addEventListener("click", () => {
+      document.getElementById("hiddenHint1").style.display = "block";
+    });
+
+    // Dev helper — type `devOutlines()` in the console to reveal hidden areas
+    function devOutlines() {
+      const all = document.querySelectorAll("*");
+      all.forEach(el => {
+        const style = window.getComputedStyle(el);
+        const isVisible = style.display !== "none" && style.visibility !== "hidden" && style.opacity !== "0";
+
+        if (!isVisible || el.offsetWidth === 0 || el.offsetHeight === 0) {
+          el.style.outline = "2px dashed red";
+        } else {
+          el.style.outline = "1px dashed limegreen";
+        }
+      });
+
+      console.log("🔍 Dev outlines added (red = hidden, green = visible)");
+    }
+
+    // Expose the function globally for console access
+    window.devOutlines = devOutlines;
+  </script>
+
+</body>
+</html>

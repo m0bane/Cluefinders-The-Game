@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Cluefinders – Level 4 (Stage 1)</title>
+  <style>
+    /* Unique twist for Level 4 Stage 1: The clue is hidden within the colour input */
+    #colorInput {
+      position: fixed; 
+      bottom: 50px;   
+      left: 50px;     
+      opacity: 0.01; 
+      width: 150px;
+      height: 150px;
+      padding: 0;
+      border: 5px solid #003366;
+      cursor: pointer;
+      color: rgb(255, 198, 198);
+    }
+  </style>
+</head>
+<body>
+  <h1>Level 4 – Stage 1</h1>
+  <p>Find the hidden Color Input to reveal the first piece of the puzzle.</p>
+  
+  <p id="hintText">The code is related to a primary web color.</p>
+
+  <input type="color" id="colorInput" value="#FF0000"/>
+  
+  <div id="hiddenHint1" style="display: none; margin-top: 20px;">
+    <p><strong>Clue 1:</strong> The time is 15:30</p>
+  </div>
+
+  <a href="level4-stage2.html" id="stage2Link" style="display: none;">Proceed to Stage 2</a>
+
+  <script>
+    
+    // Action when the hidden color input is clicked
+    document.getElementById("colorInput").addEventListener("click", () => {
+      document.getElementById("hiddenHint1").style.display = "block";
+      document.getElementById("stage2Link").style.display = "inline-block";
+    });
+
+    // Function to update progress in localStorage (only for stage completion, actual unlock is in stage 3)
+    function unlockNextLevel(levelNumber) {
+      const currentProgress = parseInt(localStorage.getItem("userprogress") || "1");
+      if (levelNumber > currentProgress) {
+        localStorage.setItem("userprogress", levelNumber.toString());
+        console.log(`Progress updated to Level ${levelNumber}`);
+      }
+    }
+    window.unlockNextLevel = unlockNextLevel;
+
+    // Dev helper — type `devOutlines()` in the console
+    function devOutlines() {
+      const all = document.querySelectorAll("*");
+      all.forEach(el => {
+        const style = window.getComputedStyle(el);
+        const isVisible = style.display !== "none" && style.visibility !== "hidden" && style.opacity > "0.01";
+
+        if (!isVisible || el.offsetWidth === 0 || el.offsetHeight === 0) {
+          el.style.outline = "2px dashed red";
+        } else {
+          el.style.outline = "1px dashed limegreen";
+        }
+      });
+
+      console.log("🔍 Dev outlines added (red = hidden, green = visible)");
+    }
+
+    // Expose function to console
+    window.devOutlines = devOutlines;
+  </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Cluefinders – Level 4 (Stage 3)</title>
+  <style>
+    /* Styling for the date and time inputs */
+    #dateInput, #timeInput {
+        margin: 20px 10px;
+        padding: 10px;
+        font-size: 1.2em;
+        /* Using the system-default look for unique input types */
+        font-family: 'Courier New', Courier, monospace;
+    }
+    
+    #levelEnd a {
+        margin: 10px; /* Spacing for the final buttons */
+    }
+  </style>
+</head>
+<body>
+  <h1>Level 4 – Stage 3</h1>
+  <p>Enter the date and time to complete the level. You must find the exact match.</p>
+  
+  <a href="level4-stage2.html">Go back to Stage 2</a>
+
+  <div id="inputContainer" style="margin-top: 50px;">
+    <label for="dateInput">Date:</label>
+    <input type="date" id="dateInput" value="2000-01-01" />
+    <br><br>
+    <label for="timeInput">Time (HH:MM):</label>
+    <input type="time" id="timeInput" value="00:00" />
+  </div>
+  
+  <button id="submitBtn" style="margin-top: 30px;">Submit Final Clue</button>
+
+  <div id="levelEnd" style="display: none; margin-top: 30px;">
+    <p>Congratulations! You have passed Level 4!</p><br>
+    <a href="hub.html">Go to hub.</a>
+    <a href="level5.html" onclick="unlockNextLevel(5)">Proceed to level 5.</a>
+  </div>
+
+  <script>
+    const dateInput = document.getElementById("dateInput");
+    const timeInput = document.getElementById("timeInput");
+    const submitBtn = document.getElementById("submitBtn");
+    const levelEnd = document.getElementById("levelEnd");
+    
+    // Clues collected from Stage 1 and Stage 2
+    const correctDate = "2023-01-01"; 
+    const correctTime = "15:30"; 
+
+    // Function to update progress in localStorage
+    function unlockNextLevel(levelNumber) {
+      const currentProgress = parseInt(localStorage.getItem("userprogress") || "1");
+      if (levelNumber > currentProgress) {
+        localStorage.setItem("userprogress", levelNumber.toString());
+        console.log(`Progress updated to Level ${levelNumber}`);
+      }
+    }
+    window.unlockNextLevel = unlockNextLevel;
+
+    // Check input code on submission
+    submitBtn.addEventListener("click", () => {
+      const enteredDate = dateInput.value;
+      const enteredTime = timeInput.value;
+
+      if (enteredDate === correctDate && enteredTime === correctTime) {
+        levelEnd.style.display = "block";
+        unlockNextLevel(5); // Unlock Level 5 on success
+      } else {
+        alert("Incorrect combination! Check your clues for the exact date and time .");
+      }
+    });
+
+    // Dev helper — type `devOutlines()` in the console
+    function devOutlines() {
+      const all = document.querySelectorAll("*");
+      all.forEach(el => {
+        const style = window.getComputedStyle(el);
+        const isVisible = style.display !== "none" && style.visibility !== "hidden" && style.opacity !== "0";
+
+        if (!isVisible || el.offsetWidth === 0 || el.offsetHeight === 0) {
+          el.style.outline = "2px dashed red";
+        } else {
+          el.style.outline = "1px dashed limegreen";
+        }
+      });
+
+      console.log("🔍 Dev outlines added (red = hidden, green = visible)");
+    }
+
+    window.devOutlines = devOutlines;
+  </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Cluefinders – Level 3</title>
+  <style>
+    /* Unique hiding technique for Level 3: Hiding the question text */
+    #hiddenQuestion {
+      color: #f0f0f0; 
+      transition: color 0.5s;
+      margin-top: 20px;
+      font-weight: bold;
+      cursor: default;
+    }
+
+    #rangeInput {
+        margin-top: 15px;
+        width: 80%;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Level 3</h1>
+  <p>To pass this level, you must find the hidden question and set the visible slider to the correct value.</p>
+  <p>The correct answer is a four-digit year.</p>
+
+  <div id="visibleClue">
+      <strong>Clue:</strong>
+      <p>The solution requires a four-digit year.</p>
+      <p>How do you reveal elements hidden by color?</p>
+  </div>
+
+  <input type="range" id="rangeInput" min="1500" max="1800" value="1500" step="1" oninput="updateValue(this.value)"/>
+  <p>Current Year: <span id="currentValue">1500</span></p>
+
+  <button id="submitBtn">Check Answer</button>
+  
+  <div id="levelEnd" style="display: none; margin-top: 30px;">
+    <p>Congratulations! You have passed Level 3!</p><br>
+    <a href="hub.html">Go to hub.</a>
+    <a href="level4.html" onclick="unlockNextLevel(4)">Proceed to level 4.</a>
+  </div>
+
+  <p id="hiddenQuestion">
+    In which year did Isaac Newton publish the law of gravity?
+  </p>
+
+  <script>
+    const rangeInput = document.getElementById("rangeInput");
+    const currentValueSpan = document.getElementById("currentValue");
+    const submitBtn = document.getElementById("submitBtn");
+    const levelEnd = document.getElementById("levelEnd");
+    
+    // The correct year is the year the Constitution of May 3, 1791 was officially adopted.
+    const correctYear = 1687; 
+
+    // Updates the displayed value next to the slider
+    function updateValue(val) {
+        currentValueSpan.textContent = val;
+    }
+
+    // Function to update progress in localStorage
+    function unlockNextLevel(levelNumber) {
+      const currentProgress = parseInt(localStorage.getItem("userprogress") || "1");
+      if (levelNumber > currentProgress) {
+        localStorage.setItem("userprogress", levelNumber.toString());
+        console.log(`Progress updated to Level ${levelNumber}`);
+      }
+    }
+    window.unlockNextLevel = unlockNextLevel;
+
+    // Check input code on submission
+    submitBtn.addEventListener("click", () => {
+      if (parseInt(rangeInput.value) === correctYear) {
+        levelEnd.style.display = "block";
+        unlockNextLevel(4);
+      } else {
+        alert("Incorrect value! Use the clue to understand how to find the hidden question.");
+      }
+    });
+
+    // Dev helper — type `devOutlines()` in the console
+    function devOutlines() {
+      const all = document.querySelectorAll("*");
+      all.forEach(el => {
+        const style = window.getComputedStyle(el);
+        const isVisible = style.display !== "none" && style.visibility !== "hidden" && style.opacity !== "0";
+
+        if (!isVisible || el.offsetWidth === 0 || el.offsetHeight === 0) {
+          el.style.outline = "2px dashed red";
+        } else {
+          el.style.outline = "1px dashed limegreen";
+        }
+      });
+
+      console.log("🔍 Dev outlines added (red = hidden, green = visible)");
+    }
+
+    // Expose function to console
+    window.devOutlines = devOutlines;
+  </script>
+</body>
+</html>

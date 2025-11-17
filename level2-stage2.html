@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Level 2 – Stage 2</title>
+  <style>
+    /* Unique hiding technique for Level 2 - Stage 2 */
+    #hiddenTextClue {
+      opacity: 0;
+      transition: opacity 0.5s;
+      margin-top: 50px;
+      cursor: pointer;
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    #hiddenTextClue:hover {
+      opacity: 0.2;
+    }
+
+    /* Added margin to links inside levelEnd for button spacing */
+    #levelEnd a {
+        margin: 10px; 
+    }
+  </style>
+</head>
+<body>
+  <h1>Level 2 – Stage 2</h1>
+  <p>Enter the decrypted message you found in Level 1 - Stage 1, and then apply the key from Level 2 to it.</p>
+
+  <a href="level2.html">Go back to stage 1</a>
+
+  <p id="hiddenTextClue">
+    Level 1 Message: XJP
+  </p>
+
+  <div id="inputContainer" style="margin-top: 50px;">
+    <input type="text" id="codeInput" placeholder="Enter the final code (3 letters)"/>
+    <button id="submitBtn" style="margin-left: 10px;">Check</button>
+  </div>
+
+  <div id="levelEnd" style="display: none; margin-top: 30px;">
+    <p>Congratulations! You have passed Level 2!</p><br>
+    <a href="hub.html">Go to hub.</a>
+    <a href="level3.html" onclick="unlockNextLevel(3)">Proceed to level 3.</a>
+  </div>
+
+  <script>
+    const codeInput = document.getElementById("codeInput");
+    const submitBtn = document.getElementById("submitBtn");
+    const levelEnd = document.getElementById("levelEnd");
+    const hiddenTextClue = document.getElementById("hiddenTextClue");
+    
+    // Reveal hidden clue on click by setting opacity to 1
+    hiddenTextClue.addEventListener("click", () => {
+        hiddenTextClue.style.opacity = 1;
+        alert("Remember: XJP (Level 1) + Key 2 (Level 2) = ?");
+    });
+    
+    // The correct code is ZLR (XJP shifted by 2 using Caesar cipher)
+    const correctCode = "ZLR"; 
+
+    // Function to update progress in localStorage
+    function unlockNextLevel(levelNumber) {
+      const currentProgress = parseInt(localStorage.getItem("userprogress") || "1");
+      if (levelNumber > currentProgress) {
+        localStorage.setItem("userprogress", levelNumber.toString());
+        console.log(`Progress updated to Level ${levelNumber}`);
+      }
+    }
+    window.unlockNextLevel = unlockNextLevel;
+
+    // Check input code on submission
+    submitBtn.addEventListener("click", () => {
+      if (codeInput.value.toUpperCase().trim() === correctCode) {
+        levelEnd.style.display = "block";
+        unlockNextLevel(3);
+      } else {
+        alert("Incorrect code! Remember to decipher XJP with Key 2.");
+      }
+    });
+
+    // Dev helper — type `devOutlines()` in the console
+    function devOutlines() {
+      const all = document.querySelectorAll("*");
+      all.forEach(el => {
+        const style = window.getComputedStyle(el);
+        const isVisible = style.display !== "none" && style.visibility !== "hidden" && style.opacity !== "0";
+
+        if (!isVisible || el.offsetWidth === 0 || el.offsetHeight === 0) {
+          el.style.outline = "2px dashed red";
+        } else {
+          el.style.outline = "1px dashed limegreen";
+        }
+      });
+
+      console.log("🔍 Dev outlines added (red = hidden, green = visible)");
+    }
+
+    // Expose function to console
+    window.devOutlines = devOutlines;
+  </script>
+</body>
+</html>

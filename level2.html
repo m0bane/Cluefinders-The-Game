@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Cluefinders – Level 2</title>
+  <style>
+    /* Unique hiding technique for Level 2 */
+    #hiddenBtn1 {
+      position: absolute; 
+      top: 300px; 
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px; 
+      height: 20px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: transparent;
+      font-size: 0;
+      cursor: pointer;
+    }
+    #hiddenBtn1:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    /* Added margin to the link to ensure it looks like a separate button */
+    #stage2Link {
+        margin-top: 20px; 
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Level 2</h1>
+  <p>Your mission is to find and click the button and then use the resulting clue.</p>
+
+  <button id="hiddenBtn1">Code Clue</button> 
+  
+  <div id="hiddenHint2" style="display: none; margin-top: 100px;">
+    <p>Here is your clue:</p>
+    <strong><span style="letter-spacing: 5px;">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</span></strong>
+    <p>The key to the cipher is to shift each letter by 2 places in the alphabet (e.g., A becomes C).</p>
+  </div>
+  
+  <a href="level2-stage2.html" id="stage2Link" style="display: none;">Go to Stage 2</a>
+
+  <script>
+    document.getElementById("hiddenBtn1").addEventListener("click", () => {
+      const hint = document.getElementById("hiddenHint2");
+      const link = document.getElementById("stage2Link");
+      
+      hint.style.display = "block";
+      link.style.display = "inline-block"; 
+      alert("Clue found!");
+    });
+
+    // Dev helper — type `devOutlines()` in the console
+    function devOutlines() {
+      const all = document.querySelectorAll("*");
+      all.forEach(el => {
+        const style = window.getComputedStyle(el);
+        const isVisible = style.display !== "none" && style.visibility !== "hidden" && style.opacity !== "0";
+
+        if (!isVisible || el.offsetWidth === 0 || el.offsetHeight === 0) {
+          el.style.outline = "2px dashed red";
+        } else {
+          el.style.outline = "1px dashed limegreen";
+        }
+      });
+
+      console.log("🔍 Dev outlines added (red = hidden, green = visible)");
+    }
+
+    window.devOutlines = devOutlines;
+  </script>
+
+</body>
+</html>

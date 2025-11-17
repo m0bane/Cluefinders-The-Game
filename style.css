@@ -1,0 +1,127 @@
+/* Retro general style */
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #f0f0f0;
+  color: #222;
+  padding: 40px;
+  margin: 0;
+}
+
+/* Headers */
+h1 {
+  color: #003366;
+  text-shadow: 1px 1px 0 #b0c4de;
+}
+
+/* Links and buttons */
+a, button {
+  font-weight: bold;
+  cursor: pointer;
+  background: #c0d6f7;
+  border: 2px outset #fff;
+  color: #003366;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  text-decoration: none;
+  display: inline-block;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+a:hover, button:hover {
+  background-color: #7faaff;
+  border-style: inset;
+  color: #001933;
+}
+
+/* Hidden clue element */
+.hidden-clue {
+  display: none; /* important so JS can change it */
+  margin-top: 20px;
+  padding: 15px;
+  border: 2px dashed #444;
+  background-color: #eef;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* level1-stage2 - buttons and input styles */
+
+#hiddenBtn1 {
+  position: absolute;
+  top: 200px;
+  left: 400px;
+  width: 100px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#hiddenBtn1:hover {
+  outline: 1px dashed #666;
+}
+
+#codeBtn {
+  position: absolute;
+  top: 300px;
+  left: 600px;
+  width: 80px;
+  height: 30px;
+  background-color: #c0d6f7;
+  border: 2px outset #fff;
+  cursor: pointer;
+  font-weight: bold;
+  color: #003366;
+  border-radius: 5px;
+  display: none; /* show it only after unlock */
+  font-family: 'Courier New', Courier, monospace;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+#codeBtn:hover {
+  background-color: #a9c4f7;
+  border-style: inset;
+  color: #001933;
+}
+
+#inputArea {
+  position: absolute;
+  top: 350px;
+  left: 600px;
+  background-color: #fff;
+  border: 2px solid #aac4f7;
+  padding: 12px;
+  box-shadow: 2px 2px 5px #bbccee;
+  font-family: 'Courier New', Courier, monospace;
+  display: none; /* hidden by default */
+}
+
+#inputArea input {
+  font-size: 1em;
+  padding: 5px;
+  border: 1px solid #999;
+  border-radius: 3px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+#inputArea button {
+  padding: 5px 10px;
+  margin-left: 10px;
+  border: 2px outset #fff;
+  background-color: #a2caff;
+  color: #003366;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+#inputArea button:hover {
+  background-color: #7faaff;
+  border-style: inset;
+  color: #001933;
+}

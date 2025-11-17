@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Level 1 – Stage 2</title>
+</head>
+<body>
+  <h1>Level 1 – Stage 2</h1>
+
+  <a href="level1.html">Go back to stage 1</a>
+
+  <button id="firstBtn" style="position: absolute; top: 550px; left: 800px;">
+    ???
+  </button>
+
+  <div id="inputContainer" style="display: none; position: absolute; top: 250px; left: 400px;">
+    <input type="text" id="codeInput" placeholder="Type something..."/>
+    <button id="submitBtn" style="margin-left: 10px;">Submit</button>
+  </div>
+
+  <div id="levelEnd" style="display: none;">
+    <p>Congratulations! You have passed level 1!</p><br>
+    <a href="hub.html">Go to hub.</a>
+    <a href="level2.html" onclick="unlockNextLevel(2)">Proceed to level 2.</a>
+  </div>
+
+  <script>
+    const firstBtn = document.getElementById("firstBtn");
+    const inputContainer = document.getElementById("inputContainer");
+    const submitBtn = document.getElementById("submitBtn");
+    const codeInput = document.getElementById("codeInput");
+    const levelEnd = document.getElementById("levelEnd");
+
+    // Saves progress to localStorage
+    function unlockNextLevel(levelNumber) {
+      const currentProgress = parseInt(localStorage.getItem("userprogress") || "1");
+      if (levelNumber > currentProgress) {
+        localStorage.setItem("userprogress", levelNumber.toString());
+        console.log(`Progress updated to Level ${levelNumber}`);
+      }
+    }
+    window.unlockNextLevel = unlockNextLevel;
+
+    // First button click: reveals the input field
+    firstBtn.addEventListener("click", () => {
+      inputContainer.style.display = "block";
+      codeInput.focus();
+    });
+
+    // Submit button click: checks for completion and saves progress
+    submitBtn.addEventListener("click", () => {
+      if (codeInput.value.trim() !== "") {
+        levelEnd.style.display = "block";
+        unlockNextLevel(2); 
+      } else {
+        alert("Type something first!");
+      }
+    });
+
+    // Dev helper — type `devOutlines()` in the console
+    function devOutlines() {
+      const all = document.querySelectorAll("*");
+      all.forEach(el => {
+        const style = window.getComputedStyle(el);
+        const isVisible = style.display !== "none" && style.visibility !== "hidden" && style.opacity !== "0";
+        
+        if (!isVisible || el.offsetWidth === 0 || el.offsetHeight === 0) {
+          el.style.outline = "2px dashed red";
+        } else {
+          el.style.outline = "1px dashed limegreen";
+        }
+      });
+
+      console.log("🔍 Dev outlines added (red = hidden, green = visible)");
+    }
+
+    // Expose function to console
+    window.devOutlines = devOutlines;
+  </script>
+</body>
+</html>
