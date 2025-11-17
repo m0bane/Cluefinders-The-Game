@@ -4,15 +4,7 @@
   <meta charset="UTF-8" />
   <link rel="stylesheet" href="style.css" />
   <title>Level 1 – Stage 2</title>
-  <style>
-    /* Setting body background for retro aesthetic */
-    body {
-        background-image: url('win-old-bg.png');
-        background-repeat: repeat;
-        background-color: #008080;
-    }
-  </style>
-</head>
+  </head>
 <body>
   <h1>Level 1 – Stage 2</h1>
 
@@ -35,9 +27,9 @@
   </div>
 
   <script>
-    // Exit Confirmation ---
+    //  Exit Confirmation with improved message ---
     function confirmExitToHub() {
-        const exitConfirmed = confirm("Are you sure you want to exit the current level and return to the Hub? Any temporary clues or unsaved input will be lost.");
+        const exitConfirmed = confirm("Are you sure you want to exit the current puzzle and return to the Hub? Any temporary clues or unsaved input will be lost.");
         if (exitConfirmed) {
             window.location.href = 'hub.html';
         }

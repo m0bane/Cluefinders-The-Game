@@ -5,14 +5,7 @@
   <link rel="stylesheet" href="style.css" />
   <title>Cluefinders – Level 3</title>
   <style>
-    /* Setting body background for retro aesthetic */
-    body {
-        background-image: url('win-old-bg.png');
-        background-repeat: repeat;
-        background-color: #008080;
-    }
-    
-    /* Unique hiding technique for Level 3: Hiding the question text */
+    /* Unique hiding technique for Level 3: Hiding the question text - zachowano */
     #hiddenQuestion {
       color: #f0f0f0; 
       transition: color 0.5s;
@@ -45,7 +38,7 @@
   <p>Current Year: <span id="currentValue">1500</span></p>
 
   <div id="hiddenQuestion">
-    What is the year of the invention of the printing press by Johannes Gutenberg? (1440-1450)
+    In what year did Isaac Newton publish his discovery of the law of gravity?
   </div>
 
   <button id="submitBtn">Submit Year</button>
@@ -57,9 +50,9 @@
   </div>
 
   <script>
-    // Exit Confirmation ---
+    // --- Updated Functionality: Exit Confirmation with improved message ---
     function confirmExitToHub() {
-        const exitConfirmed = confirm("Are you sure you want to exit the current level and return to the Hub? Any temporary clues or unsaved input will be lost.");
+        const exitConfirmed = confirm("Are you sure you want to exit the current puzzle and return to the Hub? Any temporary clues or unsaved input will be lost.");
         if (exitConfirmed) {
             window.location.href = 'hub.html';
         }
@@ -70,8 +63,8 @@
     const submitBtn = document.getElementById("submitBtn");
     const levelEnd = document.getElementById("levelEnd");
     
-    // The correct year is 1440 (or 1450, depending on source, but we'll use 1440 as it is the most common answer)
-    const correctYear = 1440; 
+    // The correct year is 1687
+    const correctYear = 1687; 
     
     // Change the display value of the slider
     function updateValue(value) {
@@ -91,7 +84,7 @@
 
     // Check input code on submission
     submitBtn.addEventListener("click", () => {
-      if (parseInt(rangeInput.value) === correctYear) {
+      if (parseInt(rangeInput.value) === correctYear || parseInt(rangeInput.value) === 1687) {
         levelEnd.style.display = "block";
         unlockNextLevel(4);
       } else {

@@ -5,14 +5,7 @@
   <link rel="stylesheet" href="style.css" />
   <title>Cluefinders – Level 2</title>
   <style>
-    /* Setting body background for retro aesthetic */
-    body {
-        background-image: url('win-old-bg.png');
-        background-repeat: repeat;
-        background-color: #008080;
-    }
-    
-    /* Unique hiding technique for Level 2 */
+    /* Unique hiding technique for Level 2 - zachowano */
     #hiddenBtn1 {
       position: absolute; 
       top: 300px; 
@@ -31,7 +24,7 @@
         background-color: rgba(0, 0, 0, 0.1);
     }
 
-    /* Added margin to the link to ensure it looks like a separate button */
+    /* Added margin to the link to ensure it looks like a separate button - zachowano */
     #stage2Link {
         margin-top: 20px; 
         margin-left: 50%;
@@ -43,7 +36,7 @@
 
   <h1>Level 2</h1>
   <p>Your mission is to find and click the button and then use the resulting clue.</p>
-
+  
   <button onclick="confirmExitToHub()" style="margin-top: 20px;">Back to Hub</button>
 
   <button id="hiddenBtn1">Code Clue</button> 
@@ -57,9 +50,9 @@
   <a href="level2-stage2.html" id="stage2Link" style="display: none;">Go to Stage 2</a>
 
   <script>
-    // Exit Confirmation ---
+    // --- Updated Functionality: Exit Confirmation with improved message ---
     function confirmExitToHub() {
-        const exitConfirmed = confirm("Are you sure you want to exit the current level and return to the Hub? Any temporary clues or unsaved input will be lost.");
+        const exitConfirmed = confirm("Are you sure you want to exit the current puzzle and return to the Hub? Any temporary clues or unsaved input will be lost.");
         if (exitConfirmed) {
             window.location.href = 'hub.html';
         }

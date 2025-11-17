@@ -5,14 +5,7 @@
   <link rel="stylesheet" href="style.css" />
   <title>Cluefinders – Level 4 (Stage 1)</title>
   <style>
-    /* Setting body background for retro aesthetic */
-    body {
-        background-image: url('win-old-bg.png');
-        background-repeat: repeat;
-        background-color: #008080;
-    }
-    
-    /* Unique twist for Level 4 Stage 1: The clue is hidden within the colour input */
+    /* Unique twist for Level 4 Stage 1: The clue is hidden within the colour input - zachowano */
     #colorInput {
       position: fixed; 
       bottom: 50px;   
@@ -48,9 +41,9 @@
   <a href="level4-stage2.html" id="stage2Link" style="display: none;">Proceed to Stage 2</a>
 
   <script>
-    // Exit Confirmation ---
+    // --- Updated Functionality: Exit Confirmation with improved message ---
     function confirmExitToHub() {
-        const exitConfirmed = confirm("Are you sure you want to exit the current level and return to the Hub? Any temporary clues or unsaved input will be lost.");
+        const exitConfirmed = confirm("Are you sure you want to exit the current puzzle and return to the Hub? Any temporary clues or unsaved input will be lost.");
         if (exitConfirmed) {
             window.location.href = 'hub.html';
         }

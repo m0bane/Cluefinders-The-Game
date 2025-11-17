@@ -5,14 +5,7 @@
   <link rel="stylesheet" href="style.css" />
   <title>Level 2 – Stage 2</title>
   <style>
-    /* Setting body background for retro aesthetic */
-    body {
-        background-image: url('win-old-bg.png');
-        background-repeat: repeat;
-        background-color: #008080;
-    }
-    
-    /* Unique hiding technique for Level 2 - Stage 2 */
+    /* Unique hiding technique for Level 2 - Stage 2 - zachowano */
     #hiddenTextClue {
       opacity: 0;
       transition: opacity 0.5s;
@@ -26,7 +19,7 @@
       opacity: 0.2;
     }
 
-    /* Added margin to links inside levelEnd for button spacing */
+    /* Added margin to links inside levelEnd for button spacing - zachowano */
     #levelEnd a {
         margin: 10px; 
     }
@@ -55,9 +48,9 @@
   </div>
 
   <script>
-    // Exit Confirmation ---
+    // --- Updated Functionality: Exit Confirmation with improved message ---
     function confirmExitToHub() {
-        const exitConfirmed = confirm("Are you sure you want to exit the current level and return to the Hub? Any temporary clues or unsaved input will be lost.");
+        const exitConfirmed = confirm("Are you sure you want to exit the current puzzle and return to the Hub? Any temporary clues or unsaved input will be lost.");
         if (exitConfirmed) {
             window.location.href = 'hub.html';
         }

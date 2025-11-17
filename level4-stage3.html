@@ -5,14 +5,7 @@
   <link rel="stylesheet" href="style.css" />
   <title>Cluefinders – Level 4 (Stage 3)</title>
   <style>
-    /* Setting body background for retro aesthetic */
-    body {
-        background-image: url('win-old-bg.png');
-        background-repeat: repeat;
-        background-color: #008080;
-    }
-    
-    /* Styling for the date and time inputs */
+    /* Styling for the date and time inputs - zachowano */
     #dateInput, #timeInput {
         margin: 20px 10px;
         padding: 10px;
@@ -50,9 +43,9 @@
   </div>
 
   <script>
-    // Exit Confirmation ---
+    // --- Updated Functionality: Exit Confirmation with improved message ---
     function confirmExitToHub() {
-        const exitConfirmed = confirm("Are you sure you want to exit the current level and return to the Hub? Any temporary clues or unsaved input will be lost.");
+        const exitConfirmed = confirm("Are you sure you want to exit the current puzzle and return to the Hub? Any temporary clues or unsaved input will be lost.");
         if (exitConfirmed) {
             window.location.href = 'hub.html';
         }
@@ -84,7 +77,7 @@
 
       if (enteredDate === correctDate && enteredTime === correctTime) {
         levelEnd.style.display = "block";
-        unlockNextLevel(5); 
+        unlockNextLevel(5); // Unlock Level 5 on success
       } else {
         alert("Incorrect combination! Check your clues for the exact date and time .");
       }
