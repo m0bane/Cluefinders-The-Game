@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <link rel="stylesheet" href="style.css" />
   <title>Cluefinders – Level 1</title>
+  <style>
+    /* Setting body background for retro aesthetic */
+    body {
+        background-image: url('win-old-bg.png');
+        background-repeat: repeat;
+        background-color: #008080;
+    }
+  </style>
 </head>
 <body>
 
@@ -13,12 +21,22 @@
   <button id="hiddenBtn1" style="position: absolute; top: 550px; left: 800px;"></button>
 
   <a href="level1-stage2.html">Go to Stage 2</a>
+  
+  <button onclick="confirmExitToHub()" style="margin-top: 20px;">Back to Hub</button>
 
   <div id="hiddenHint1" style="display: none;">
     <strong>Clue:</strong><p>XJP</p><br>
   </div>
 
   <script>
+    // Exit Confirmation ---
+    function confirmExitToHub() {
+        const exitConfirmed = confirm("Are you sure you want to exit the current level and return to the Hub? Any temporary clues or unsaved input will be lost.");
+        if (exitConfirmed) {
+            window.location.href = 'hub.html';
+        }
+    }
+
     // Event listener for the invisible button
     document.getElementById("hiddenBtn1").addEventListener("click", () => {
       document.getElementById("hiddenHint1").style.display = "block";
@@ -40,10 +58,6 @@
 
       console.log("🔍 Dev outlines added (red = hidden, green = visible)");
     }
-
-    // Expose the function globally for console access
-    window.devOutlines = devOutlines;
   </script>
-
 </body>
 </html>

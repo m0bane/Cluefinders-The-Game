@@ -5,6 +5,13 @@
   <link rel="stylesheet" href="style.css" />
   <title>Cluefinders – Level 4 (Stage 1)</title>
   <style>
+    /* Setting body background for retro aesthetic */
+    body {
+        background-image: url('win-old-bg.png');
+        background-repeat: repeat;
+        background-color: #008080;
+    }
+    
     /* Unique twist for Level 4 Stage 1: The clue is hidden within the colour input */
     #colorInput {
       position: fixed; 
@@ -18,6 +25,10 @@
       cursor: pointer;
       color: rgb(255, 198, 198);
     }
+    
+    #stage2Link {
+        margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -25,6 +36,8 @@
   <p>Find the hidden Color Input to reveal the first piece of the puzzle.</p>
   
   <p id="hintText">The code is related to a primary web color.</p>
+
+  <button onclick="confirmExitToHub()" style="margin-top: 20px;">Back to Hub</button>
 
   <input type="color" id="colorInput" value="#FF0000"/>
   
@@ -35,8 +48,15 @@
   <a href="level4-stage2.html" id="stage2Link" style="display: none;">Proceed to Stage 2</a>
 
   <script>
+    // Exit Confirmation ---
+    function confirmExitToHub() {
+        const exitConfirmed = confirm("Are you sure you want to exit the current level and return to the Hub? Any temporary clues or unsaved input will be lost.");
+        if (exitConfirmed) {
+            window.location.href = 'hub.html';
+        }
+    }
     
-    // Action when the hidden color input is clicked
+    // Event listener for when the hidden color input is clicked
     document.getElementById("colorInput").addEventListener("click", () => {
       document.getElementById("hiddenHint1").style.display = "block";
       document.getElementById("stage2Link").style.display = "inline-block";
@@ -68,9 +88,6 @@
 
       console.log("🔍 Dev outlines added (red = hidden, green = visible)");
     }
-
-    // Expose function to console
-    window.devOutlines = devOutlines;
   </script>
 </body>
 </html>

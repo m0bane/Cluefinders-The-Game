@@ -5,6 +5,13 @@
   <link rel="stylesheet" href="style.css" />
   <title>Level 2 – Stage 2</title>
   <style>
+    /* Setting body background for retro aesthetic */
+    body {
+        background-image: url('win-old-bg.png');
+        background-repeat: repeat;
+        background-color: #008080;
+    }
+    
     /* Unique hiding technique for Level 2 - Stage 2 */
     #hiddenTextClue {
       opacity: 0;
@@ -30,6 +37,7 @@
   <p>Enter the decrypted message you found in Level 1 - Stage 1, and then apply the key from Level 2 to it.</p>
 
   <a href="level2.html">Go back to stage 1</a>
+  <button onclick="confirmExitToHub()" style="margin-left: 10px;">Back to Hub</button>
 
   <p id="hiddenTextClue">
     Level 1 Message: XJP
@@ -37,29 +45,30 @@
 
   <div id="inputContainer" style="margin-top: 50px;">
     <input type="text" id="codeInput" placeholder="Enter the final code (3 letters)"/>
-    <button id="submitBtn" style="margin-left: 10px;">Check</button>
+    <button id="submitBtn" style="margin-left: 10px;">Submit</button>
   </div>
 
   <div id="levelEnd" style="display: none; margin-top: 30px;">
-    <p>Congratulations! You have passed Level 2!</p><br>
+    <p>Success! The next clue awaits.</p><br>
     <a href="hub.html">Go to hub.</a>
     <a href="level3.html" onclick="unlockNextLevel(3)">Proceed to level 3.</a>
   </div>
 
   <script>
-    const codeInput = document.getElementById("codeInput");
+    // Exit Confirmation ---
+    function confirmExitToHub() {
+        const exitConfirmed = confirm("Are you sure you want to exit the current level and return to the Hub? Any temporary clues or unsaved input will be lost.");
+        if (exitConfirmed) {
+            window.location.href = 'hub.html';
+        }
+    }
+
     const submitBtn = document.getElementById("submitBtn");
+    const codeInput = document.getElementById("codeInput");
     const levelEnd = document.getElementById("levelEnd");
-    const hiddenTextClue = document.getElementById("hiddenTextClue");
     
-    // Reveal hidden clue on click by setting opacity to 1
-    hiddenTextClue.addEventListener("click", () => {
-        hiddenTextClue.style.opacity = 1;
-        alert("Remember: XJP (Level 1) + Key 2 (Level 2) = ?");
-    });
-    
-    // The correct code is ZLR (XJP shifted by 2 using Caesar cipher)
-    const correctCode = "ZLR"; 
+    // Correct code for XJP (shift +2) is ZJR
+    const correctCode = "ZJR";
 
     // Function to update progress in localStorage
     function unlockNextLevel(levelNumber) {
@@ -97,9 +106,6 @@
 
       console.log("🔍 Dev outlines added (red = hidden, green = visible)");
     }
-
-    // Expose function to console
-    window.devOutlines = devOutlines;
   </script>
 </body>
 </html>

@@ -4,11 +4,20 @@
   <meta charset="UTF-8" />
   <link rel="stylesheet" href="style.css" />
   <title>Level 1 – Stage 2</title>
+  <style>
+    /* Setting body background for retro aesthetic */
+    body {
+        background-image: url('win-old-bg.png');
+        background-repeat: repeat;
+        background-color: #008080;
+    }
+  </style>
 </head>
 <body>
   <h1>Level 1 – Stage 2</h1>
 
   <a href="level1.html">Go back to stage 1</a>
+  <button onclick="confirmExitToHub()" style="margin-left: 10px;">Back to Hub</button>
 
   <button id="firstBtn" style="position: absolute; top: 550px; left: 800px;">
     ???
@@ -26,13 +35,21 @@
   </div>
 
   <script>
+    // Exit Confirmation ---
+    function confirmExitToHub() {
+        const exitConfirmed = confirm("Are you sure you want to exit the current level and return to the Hub? Any temporary clues or unsaved input will be lost.");
+        if (exitConfirmed) {
+            window.location.href = 'hub.html';
+        }
+    }
+    
     const firstBtn = document.getElementById("firstBtn");
     const inputContainer = document.getElementById("inputContainer");
     const submitBtn = document.getElementById("submitBtn");
     const codeInput = document.getElementById("codeInput");
     const levelEnd = document.getElementById("levelEnd");
 
-    // Saves progress to localStorage
+    // Function to update progress in localStorage
     function unlockNextLevel(levelNumber) {
       const currentProgress = parseInt(localStorage.getItem("userprogress") || "1");
       if (levelNumber > currentProgress) {
@@ -74,9 +91,6 @@
 
       console.log("🔍 Dev outlines added (red = hidden, green = visible)");
     }
-
-    // Expose function to console
-    window.devOutlines = devOutlines;
   </script>
 </body>
 </html>

@@ -5,6 +5,13 @@
   <link rel="stylesheet" href="style.css" />
   <title>Cluefinders – Level 3</title>
   <style>
+    /* Setting body background for retro aesthetic */
+    body {
+        background-image: url('win-old-bg.png');
+        background-repeat: repeat;
+        background-color: #008080;
+    }
+    
     /* Unique hiding technique for Level 3: Hiding the question text */
     #hiddenQuestion {
       color: #f0f0f0; 
@@ -25,6 +32,8 @@
   <h1>Level 3</h1>
   <p>To pass this level, you must find the hidden question and set the visible slider to the correct value.</p>
   <p>The correct answer is a four-digit year.</p>
+  
+  <button onclick="confirmExitToHub()" style="margin-top: 20px;">Back to Hub</button>
 
   <div id="visibleClue">
       <strong>Clue:</strong>
@@ -35,32 +44,41 @@
   <input type="range" id="rangeInput" min="1500" max="1800" value="1500" step="1" oninput="updateValue(this.value)"/>
   <p>Current Year: <span id="currentValue">1500</span></p>
 
-  <button id="submitBtn">Check Answer</button>
-  
+  <div id="hiddenQuestion">
+    What is the year of the invention of the printing press by Johannes Gutenberg? (1440-1450)
+  </div>
+
+  <button id="submitBtn">Submit Year</button>
+
   <div id="levelEnd" style="display: none; margin-top: 30px;">
-    <p>Congratulations! You have passed Level 3!</p><br>
+    <p>Success! You solved the riddle.</p><br>
     <a href="hub.html">Go to hub.</a>
     <a href="level4.html" onclick="unlockNextLevel(4)">Proceed to level 4.</a>
   </div>
 
-  <p id="hiddenQuestion">
-    In which year did Isaac Newton publish the law of gravity?
-  </p>
-
   <script>
+    // Exit Confirmation ---
+    function confirmExitToHub() {
+        const exitConfirmed = confirm("Are you sure you want to exit the current level and return to the Hub? Any temporary clues or unsaved input will be lost.");
+        if (exitConfirmed) {
+            window.location.href = 'hub.html';
+        }
+    }
+
     const rangeInput = document.getElementById("rangeInput");
-    const currentValueSpan = document.getElementById("currentValue");
+    const currentValue = document.getElementById("currentValue");
     const submitBtn = document.getElementById("submitBtn");
     const levelEnd = document.getElementById("levelEnd");
     
-    // The correct year is the year the Constitution of May 3, 1791 was officially adopted.
-    const correctYear = 1687; 
-
-    // Updates the displayed value next to the slider
-    function updateValue(val) {
-        currentValueSpan.textContent = val;
+    // The correct year is 1440 (or 1450, depending on source, but we'll use 1440 as it is the most common answer)
+    const correctYear = 1440; 
+    
+    // Change the display value of the slider
+    function updateValue(value) {
+      currentValue.textContent = value;
     }
-
+    window.updateValue = updateValue;
+    
     // Function to update progress in localStorage
     function unlockNextLevel(levelNumber) {
       const currentProgress = parseInt(localStorage.getItem("userprogress") || "1");
@@ -97,9 +115,6 @@
 
       console.log("🔍 Dev outlines added (red = hidden, green = visible)");
     }
-
-    // Expose function to console
-    window.devOutlines = devOutlines;
   </script>
 </body>
 </html>

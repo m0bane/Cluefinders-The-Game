@@ -5,6 +5,13 @@
   <link rel="stylesheet" href="style.css" />
   <title>Cluefinders – Level 4 (Stage 3)</title>
   <style>
+    /* Setting body background for retro aesthetic */
+    body {
+        background-image: url('win-old-bg.png');
+        background-repeat: repeat;
+        background-color: #008080;
+    }
+    
     /* Styling for the date and time inputs */
     #dateInput, #timeInput {
         margin: 20px 10px;
@@ -24,6 +31,7 @@
   <p>Enter the date and time to complete the level. You must find the exact match.</p>
   
   <a href="level4-stage2.html">Go back to Stage 2</a>
+  <button onclick="confirmExitToHub()" style="margin-left: 10px;">Back to Hub</button>
 
   <div id="inputContainer" style="margin-top: 50px;">
     <label for="dateInput">Date:</label>
@@ -31,26 +39,34 @@
     <br><br>
     <label for="timeInput">Time (HH:MM):</label>
     <input type="time" id="timeInput" value="00:00" />
+    <br><br>
+    <button id="submitBtn">Submit</button>
   </div>
-  
-  <button id="submitBtn" style="margin-top: 30px;">Submit Final Clue</button>
 
   <div id="levelEnd" style="display: none; margin-top: 30px;">
-    <p>Congratulations! You have passed Level 4!</p><br>
+    <p>Level 4 complete! You are almost there.</p><br>
     <a href="hub.html">Go to hub.</a>
     <a href="level5.html" onclick="unlockNextLevel(5)">Proceed to level 5.</a>
   </div>
 
   <script>
+    // Exit Confirmation ---
+    function confirmExitToHub() {
+        const exitConfirmed = confirm("Are you sure you want to exit the current level and return to the Hub? Any temporary clues or unsaved input will be lost.");
+        if (exitConfirmed) {
+            window.location.href = 'hub.html';
+        }
+    }
+
     const dateInput = document.getElementById("dateInput");
     const timeInput = document.getElementById("timeInput");
     const submitBtn = document.getElementById("submitBtn");
     const levelEnd = document.getElementById("levelEnd");
     
-    // Clues collected from Stage 1 and Stage 2
-    const correctDate = "2023-01-01"; 
-    const correctTime = "15:30"; 
-
+    // Correct date and time from the clues: Date: 2023-01-01, Time: 15:30
+    const correctDate = "2023-01-01";
+    const correctTime = "15:30";
+    
     // Function to update progress in localStorage
     function unlockNextLevel(levelNumber) {
       const currentProgress = parseInt(localStorage.getItem("userprogress") || "1");
@@ -68,7 +84,7 @@
 
       if (enteredDate === correctDate && enteredTime === correctTime) {
         levelEnd.style.display = "block";
-        unlockNextLevel(5); // Unlock Level 5 on success
+        unlockNextLevel(5); 
       } else {
         alert("Incorrect combination! Check your clues for the exact date and time .");
       }
@@ -90,8 +106,6 @@
 
       console.log("🔍 Dev outlines added (red = hidden, green = visible)");
     }
-
-    window.devOutlines = devOutlines;
   </script>
 </body>
 </html>
