@@ -125,3 +125,60 @@ a:hover, button:hover {
   border-style: inset;
   color: #001933;
 }
+
+@media (max-width: 600px) {
+  body {
+    padding: 15px;
+    font-size: 0.9em;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+  
+  /* 🧩 1. Pozycjonowanie UKRYTYCH ELEMENTÓW (np. przycisków zagadek) */
+  /* Ustawia je absolutnie na dole, pośrodku ekranu dla łatwego dostępu mobilnego */
+  #hiddenBtn1, #invisibleBtn, #colorInput {
+    position: absolute !important; 
+    left: 50% !important;
+    bottom: 20px !important; /* Dół ekranu */
+    transform: translateX(-50%) !important;
+    
+    width: 150px !important; /* Ułatwienie kliknięcia palcem */
+    height: 150px !important;
+    margin: 0 !important;
+    top: auto !important; /* Usuwamy konflikt z górnym pozycjonowaniem */
+  }
+  
+  /* 💻 2. Pozycjonowanie PÓL WPISYWANIA (Input Area - Level 1) */
+  /* Ustawia je w stałej, centralnej pozycji */
+  #inputArea {
+    position: fixed !important; /* Użycie fixed, aby było widoczne niezależnie od przewijania */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 300px;
+    padding: 15px;
+  }
+  
+  #inputArea input {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+  }
+  
+  #inputArea button {
+      margin-left: 0;
+      display: block;
+      width: 100%;
+  }
+
+  /* 📏 3. Dostosowanie suwaka w Level 3 */
+  #rangeInput {
+      width: 90% !important; 
+      margin: 20px auto;
+      display: block;
+  }
+}
